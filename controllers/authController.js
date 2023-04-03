@@ -1,6 +1,15 @@
 module.exports = {
     register : async (req, res) => {
         try {
+
+            const {name, password, email} = req.body
+
+            if([name,email,password].includes('' || null)){
+                let error = new Error('todos los campos son obligatorio');
+                error.status = 400;
+                throw error
+            }
+
             return res.status(201).json({
                 ok : true,
                 msg : 'usuario registrado'
